@@ -1,0 +1,122 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ClientAddress {
+  id              Int      @id @default(autoincrement())
+  province        String
+  county          String?
+  district        String?
+  street          String?
+  residenceNumber Int?
+  Client          Client[]
+
+  @@map("client_address")
+}
+
+model UserAddress {
+  id              Int     @id @default(autoincrement())
+  province        String
+  county          String?
+  district        String?
+  street          String?
+  residenceNumber Int?
+  User            User[]
+
+  @@map("user_address")
+}
+
+model Client {
+  id        Int           @id @default(autoincrement())
+  name      String
+  lastname  String
+  phone     Int?
+  email     String        @unique
+  password  String
+  address   ClientAddress @relation(fields: [addressId], references: [id])
+  addressId Int
+
+  @@map("client")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  lastname String
+  state    Int    @default(1)
+  email    String @unique
+  password String
+
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  address    UserAddress @relation(fields: [addressId], references: [id])
+  addressId  Int
+  Property   Property[]
+
+  @@map("users")
+}
+
+model PropertyAddress {
+  id              Int     @id @default(autoincrement())
+  province        String
+  county          String?
+  district        String?
+  street          String?
+  residenceNumber Int?
+
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Property   Property[]
+
+  @@map("property_address")
+}
+
+model PropertyImages {
+  id         Int      @id @default(autoincrement())
+  propertyId Int
+  property   Property @relation(fields: [propertyId], references: [id])
+  image      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("property_images")
+}
+
+model Property {
+  id               Int      @id @default(autoincrement())
+  name             String
+  description      String
+  numberOfBedrooms Int
+  lease            Boolean  @default(false)
+  price            Decimal
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  propertyTypeId Int
+  userId         Int
+  user           User             @relation(fields: [userId], references: [id])
+  address        PropertyAddress  @relation(fields: [addressId], references: [id])
+  addressId      Int
+  propertyType   PropertyType     @relation(fields: [propertyTypeId], references: [id])
+  PropertyImages PropertyImages[]
+
+  @@map("properties")
+}
+
+model PropertyType {
+  id         Int        @id @default(autoincrement())
+  type       String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  Property   Property[]
+
+  @@map("property_type")
+}

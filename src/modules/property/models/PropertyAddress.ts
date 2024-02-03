@@ -1,0 +1,2 @@
+class PropertyAddress {}
+export { PropertyAddress };

@@ -1,0 +1,101 @@
+CRIAR UM CLIENTE
+ROTA: localhost:3333/clients
+PARAMETROS:
+{
+     "name":"locked",
+        "lastname":"2locked",
+        "phone":92544556,
+        "email":"nz222@gmail.com",
+        "province":"cbs",
+        "county":"xcv",
+        "street":"xcvv",
+        "district":"vvcb",
+        "password":"12345",
+        "residenceNumber":12
+}
+
+RESPOSTA:
+{
+    "data": {
+        "id": 4,
+        "name": "locked",
+        "lastname": "2locked",
+        "phone": 92544556,
+        "email": "nz222@gmail.com",
+        "password": "$2a$10$oA4KruLi8ZJQltcQRopbfek9wfENTtZZ4v4QWgD.vPovO288dMSu2",
+        "addressId": 4
+    }
+}
+
+----------------------------------------------------------------------------------------------------------
+
+LOGAR UM CLIENTE
+ROTA: localhost:3333/session/client
+PARAMETROS:
+{
+    "email":"nz2222@gmail.com",
+    "password": "12345"
+}
+REPOSTA:
+{
+    "data": {
+        "user": {
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MDY2NjM5MDAsImV4cCI6MTcwNjc1MDMwMCwic3ViIjoiNCJ9.sMWP7llPohN0FUxHTztTKjIiPe2Q0rHVL-3ZDwYChbE",
+            "email": "nz222@gmail.com",
+            "id": 4
+        }
+    }
+}
+
+ERRO :
+{
+    "message": "Email ou palavra passe não encontrado"
+}
+
+-------------------------------------------------------------------------------------------------------------
+
+CRIAR UM USUÁRIO
+
+ROTA: localhost:3333/users
+
+PARAMETROS:
+{
+    "name":"locked",
+        "lastname":"2locked",
+        "phone":92544556,
+        "email":"nz222@gmail.com",
+        "province":"cbs",
+        "county":"xcv",
+        "street":"xcvv",
+        "district":"vvcb",
+        "password":"12345",
+        "residenceNumber":12
+        
+}
+
+RESPOSTA:
+{
+    "data": {
+        "id": 1,
+        "name": "locked",
+        "lastname": "2locked",
+        "state": 1,
+        "email": "nz222@gmail.com",
+        "password": "$2a$10$Anurkl.ELXwJaQljc/VYGe95WDeV05z2Az7y9W3h4usL7u4y6e2rG",
+        "created_at": "2024-01-31T02:18:53.139Z",
+        "updated_at": "2024-01-31T02:18:53.139Z"
+    }
+}
+
+ERRO:
+{
+    "message": "Email já Existe no sistema"
+}
+
+
+---------------------------------------------------------------------------------------
+CRIAR PROPERTYTYPE
+
+{
+
+}
