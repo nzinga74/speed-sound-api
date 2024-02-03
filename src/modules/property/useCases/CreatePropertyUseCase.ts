@@ -11,8 +11,13 @@ class CreatePropertyUseCase {
     private propertyRepository: IPropertyRepository
   ) {}
   async execute(propertyData: ICreatePropertyDTO) {
+   try {
     const property = await this.propertyRepository.create(propertyData);
     return property;
+   }
+   catch (error) {
+    throw new Error(ErrorConstants.CREATE_PROPERTY_ERROR)
+   }
   }
 }
 export { CreatePropertyUseCase };

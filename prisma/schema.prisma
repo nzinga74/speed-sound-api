@@ -120,3 +120,11 @@ model PropertyType {
 
   @@map("property_type")
 }
+
+model Employee {
+  id       Int    @id @default(autoincrement())
+  email    String
+  name     String
+  lastname String
+  phone    Int
+}
