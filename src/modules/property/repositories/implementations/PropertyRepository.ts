@@ -26,20 +26,19 @@ class PropertyRepository implements IPropertyRepository {
         county,
         district,
         street,
-        residenceNumber,
+        residenceNumber: parseInt(residenceNumber.toString()),
       },
     });
-    console.log("Here!!!", address);
 
     const property = await prismaClient.property.create({
       data: {
         description,
         name,
-        numberOfBedrooms,
-        price,
+        numberOfBedrooms: parseInt(numberOfBedrooms.toString()),
+        price: parseFloat(price.toString()),
         addressId: address.id,
-        propertyTypeId,
-        userId,
+        propertyTypeId: parseInt(propertyTypeId.toString()),
+        userId: parseInt(userId.toString()),
         lease,
         PropertyImages: {
           createMany: {
@@ -48,6 +47,7 @@ class PropertyRepository implements IPropertyRepository {
         },
       },
     });
+    console.log("aajdsdjsd!!!", property);
     return property;
   }
 }

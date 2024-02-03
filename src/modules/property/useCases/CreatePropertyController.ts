@@ -46,8 +46,9 @@ class CreatePropertyController {
       street,
       images,
     });
+    console.log("<><><<><><><>", property);
 
-    return response.json(200).json({ data: property });
+    return response.status(200).json({ data: property });
   }
 }
 export { CreatePropertyController };
