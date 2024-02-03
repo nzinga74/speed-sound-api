@@ -127,4 +127,6 @@ model Employee {
   name     String
   lastname String
   phone    Int
+
+  @@map("employee")
 }
