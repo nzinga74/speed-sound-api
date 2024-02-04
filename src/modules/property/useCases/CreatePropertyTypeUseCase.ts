@@ -15,6 +15,7 @@ class CreatePropertyTypeUseCase {
       const propertyType = await this.propertyRepository.create(type);
       return propertyType;
     } catch (error) {
+      console.log(error);
       throw new Error(ErrorConstants.CREATE_PROPERTY_TYPER_ERROR);
     }
   }

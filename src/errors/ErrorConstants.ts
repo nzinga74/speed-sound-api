@@ -9,5 +9,7 @@ class ErrorConstants {
     "Erro ao cadastrar tipo de propriedade";
   public static readonly CREATE_PROPERTY_ERROR: string =
     "Erro ao cadastrar  propriedade";
+  public static readonly CREATE_EMPLOYEE_ERROR: string =
+    "Erro ao cadastrar funcionário";
 }
 export { ErrorConstants };
