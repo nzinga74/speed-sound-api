@@ -17,6 +17,12 @@ class ErrorConstants {
     "Erro ao listar manutenção";
   public static readonly CREATE_RESERVE_WITH_SAME_CLIENT_PROPERTY: string =
     "Erro ao criar uma reserva com mesmo cliente e propriedade";
+  public static readonly CREATE_CONTRACT_WITH_SAME_CLIENT_PROPERTY: string =
+    "Erro ao criar um contracto com mesmo cliente e propriedade";
   public static readonly CREATE_RESERVE_ERROR: string = "Erro ao criar reserva";
+  public static readonly CREATE_CONTRACT_ERROR: string =
+    "Erro ao criar contrato";
+  public static readonly LIST_CONTRACT_ERROR: string =
+    "Erro ao listar contrato";
 }
 export { ErrorConstants };

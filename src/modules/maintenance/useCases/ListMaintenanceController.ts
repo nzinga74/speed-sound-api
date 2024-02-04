@@ -5,7 +5,7 @@ class ListMaintenanceController {
   async handle(request: Request, response: Response) {
     try {
       const { userId } = request.query;
-      console.log("<>", userId);
+
       const id = parseInt(userId as string);
       const listMaintenanceUseCase = container.resolve(ListMaintenanceUseCase);
       const maintenance = await listMaintenanceUseCase.execute(id);

@@ -44,6 +44,7 @@ model Client {
   address   ClientAddress @relation(fields: [addressId], references: [id])
   addressId Int
   Reserve   Reserve[]
+  Contract  Contract[]
 
   @@map("clients")
 }
@@ -62,6 +63,7 @@ model User {
   addressId  Int
   Property   Property[]
   Reserve    Reserve[]
+  Contract   Contract[]
 
   @@map("users")
 }
@@ -112,6 +114,7 @@ model Property {
   Maintenance    Maintenance[]
   isActived      Boolean          @default(true)
   Reserve        Reserve[]
+  Contract       Contract[]
 
   @@map("properties")
 }
@@ -173,5 +176,18 @@ model Reserve {
 }
 
 model Contract {
-  id Int @id @default(autoincrement())
+  id                Int      @id @default(autoincrement())
+  description       String
+  propertyId        Int
+  property          Property @relation(fields: [propertyId], references: [id])
+  userId            Int
+  user              User     @relation(fields: [userId], references: [id])
+  clientId          Int
+  client            Client   @relation(fields: [clientId], references: [id])
+  transactionDate   DateTime
+  transaction_price Float
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+
+  @@map("contracts")
 }

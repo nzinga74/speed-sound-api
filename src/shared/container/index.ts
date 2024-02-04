@@ -2,6 +2,8 @@ import { IClientRepository } from "@modules/accounts/repositories/IClientReposit
 import { IUserRepository } from "@modules/accounts/repositories/IUserRepository";
 import { ClientRepository } from "@modules/accounts/repositories/implementations/ClientRepository";
 import { UserRepository } from "@modules/accounts/repositories/implementations/UserRepository";
+import { IContractRepository } from "@modules/contracts/repositories/IContractRepository";
+import { ContractRepository } from "@modules/contracts/repositories/implementations/ContractRepository";
 import { IEmployeeRepository } from "@modules/maintenance/repositories/IEmployeeRepository";
 import { IMaintenanceRepository } from "@modules/maintenance/repositories/IMaintenance";
 import { EmployeeRepository } from "@modules/maintenance/repositories/implementations/EmployeeRepository";
@@ -46,4 +48,9 @@ container.registerSingleton<IMaintenanceRepository>(
 container.registerSingleton<IReserveRepository>(
   "ReserveRepository",
   ReserveRepository
+);
+
+container.registerSingleton<IContractRepository>(
+  "ContractRepository",
+  ContractRepository
 );
