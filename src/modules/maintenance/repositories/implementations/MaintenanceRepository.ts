@@ -4,9 +4,10 @@ import { IMaintenanceRepository } from "../IMaintenance";
 import { prismaClient } from "database";
 
 class MaintenanceRepository implements IMaintenanceRepository {
-  async findAll(): Promise<Maintenance[]> {
-    return await prismaClient.maintenance.findMany();
+  findAll(userId: number): Promise<Maintenance[]> {
+    return prismaClient.$queryRaw`select * from Maintenance m where m.propertyId in (select id from properties p where userId = ${userId});`;
   }
+
   async create({
     closingDate,
     cost,

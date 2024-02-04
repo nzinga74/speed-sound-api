@@ -10,7 +10,7 @@ interface IMaintenanceRepository {
     openingDate,
     propertyId,
   }: ICreateMaintenanceDTO): Promise<Maintenance>;
-  findAll(): Promise<Maintenance[]>;
+  findAll(userId: number): Promise<Maintenance[]>;
 }
 
 export { IMaintenanceRepository };

@@ -11,5 +11,11 @@ class ErrorConstants {
     "Erro ao cadastrar  propriedade";
   public static readonly CREATE_EMPLOYEE_ERROR: string =
     "Erro ao cadastrar funcionário";
+  public static readonly CREATE_MAINTENACE_ERROR: string =
+    "Erro ao cadastrar manutenção";
+  public static readonly LIST_MAINTENACE_ERROR: string =
+    "Erro ao listar manutenção";
+  public static readonly CREATE_RESERVE_WITH_SAME_CLIENT_PROPERTY: string =
+    "Erro ao criar uma reserva com mesmo cliente e propriedade";
 }
 export { ErrorConstants };

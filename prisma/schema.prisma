@@ -19,7 +19,7 @@ model ClientAddress {
   residenceNumber Int?
   Client          Client[]
 
-  @@map("client_address")
+  @@map("client_addresses")
 }
 
 model UserAddress {
@@ -31,7 +31,7 @@ model UserAddress {
   residenceNumber Int?
   User            User[]
 
-  @@map("user_address")
+  @@map("user_addresses")
 }
 
 model Client {
@@ -43,8 +43,9 @@ model Client {
   password  String
   address   ClientAddress @relation(fields: [addressId], references: [id])
   addressId Int
+  Reserve   Reserve[]
 
-  @@map("client")
+  @@map("clients")
 }
 
 model User {
@@ -60,6 +61,7 @@ model User {
   address    UserAddress @relation(fields: [addressId], references: [id])
   addressId  Int
   Property   Property[]
+  Reserve    Reserve[]
 
   @@map("users")
 }
@@ -76,7 +78,7 @@ model PropertyAddress {
   updated_at DateTime   @updatedAt
   Property   Property[]
 
-  @@map("property_address")
+  @@map("property_addresses")
 }
 
 model PropertyImages {
@@ -109,6 +111,7 @@ model Property {
   PropertyImages PropertyImages[]
   Maintenance    Maintenance[]
   isActived      Boolean          @default(true)
+  Reserve        Reserve[]
 
   @@map("properties")
 }
@@ -120,7 +123,7 @@ model PropertyType {
   updated_at DateTime   @updatedAt
   Property   Property[]
 
-  @@map("property_type")
+  @@map("property_types")
 }
 
 model Employee {
@@ -130,8 +133,10 @@ model Employee {
   lastname    String
   phone       Int
   Maintenance Maintenance[]
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
 
-  @@map("employee")
+  @@map("employees")
 }
 
 model Maintenance {
@@ -144,4 +149,25 @@ model Maintenance {
   employeeId  Int
   property    Property @relation(fields: [propertyId], references: [id])
   propertyId  Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  @@map("maintenances")
+}
+
+model Reserve {
+  id            Int       @id @default(autoincrement())
+  userId        Int
+  user          User      @relation(fields: [userId], references: [id])
+  propertyId    Int
+  property      Property  @relation(fields: [propertyId], references: [id])
+  clientId      Int
+  client        Client    @relation(fields: [clientId], references: [id])
+  isActived     Boolean   @default(false)
+  estimatedDate DateTime
+  scheduledDate DateTime?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime  @updatedAt
+
+  @@map("reserves")
 }
