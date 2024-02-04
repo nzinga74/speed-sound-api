@@ -10,6 +10,8 @@ import { IPropertyRepository } from "@modules/property/repositories/IPropertyRep
 import { IPropertyTypeRepository } from "@modules/property/repositories/IPropertyTypeRepository";
 import { PropertyRepository } from "@modules/property/repositories/implementations/PropertyRepository";
 import { PropertyTypeRepository } from "@modules/property/repositories/implementations/PropertyTypeRepository";
+import { IReserveRepository } from "@modules/reserves/repositories/IReserveRepository";
+import { ReserveRepository } from "@modules/reserves/repositories/implementations/ReserveRepository";
 import { IHashProvider } from "@shared/providers/HashProvider/IHashProvider";
 import { BcryptHash } from "@shared/providers/HashProvider/implementations/BcryptHash";
 import { ITokenProvider } from "@shared/providers/TokenProvider/ITokenProvider";
@@ -39,4 +41,9 @@ container.registerSingleton<IEmployeeRepository>(
 container.registerSingleton<IMaintenanceRepository>(
   "MaintenanceRepository",
   MaintenanceRepository
+);
+
+container.registerSingleton<IReserveRepository>(
+  "ReserveRepository",
+  ReserveRepository
 );

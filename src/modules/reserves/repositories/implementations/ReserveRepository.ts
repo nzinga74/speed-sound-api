@@ -4,11 +4,11 @@ import { IReserveRepository } from "../IReserveRepository";
 import { prismaClient } from "database";
 
 class ReserveRepository implements IReserveRepository {
-  findReserveWithClientAndProperty(
+  async findReserveWithClientAndProperty(
     clientId: number,
     propertyId: number
   ): Promise<Reserve | null> {
-    return prismaClient.reserve.findFirst({
+    return await prismaClient.reserve.findFirst({
       where: { clientId, propertyId },
     });
   }

@@ -171,3 +171,7 @@ model Reserve {
 
   @@map("reserves")
 }
+
+model Contract {
+  id Int @id @default(autoincrement())
+}
