@@ -2,8 +2,14 @@ import { ICreateReserveDTO } from "@modules/reserves/dtos/ICreateReserveDTO";
 import { Reserve } from "@modules/reserves/models/Reserve";
 import { IReserveRepository } from "../IReserveRepository";
 import { prismaClient } from "database";
+import { IFilterReserveDTO } from "@modules/reserves/dtos/IFilterReserveDTO";
 
 class ReserveRepository implements IReserveRepository {
+  async findReserves(filter: IFilterReserveDTO): Promise<Reserve[] | null> {
+    return await prismaClient.reserve.findMany({
+      where: { ...filter },
+    });
+  }
   async findReserveWithClientAndProperty(
     clientId: number,
     propertyId: number

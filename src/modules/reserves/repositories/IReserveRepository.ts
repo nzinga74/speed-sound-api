@@ -1,4 +1,5 @@
 import { ICreateReserveDTO } from "../dtos/ICreateReserveDTO";
+import { IFilterReserveDTO } from "../dtos/IFilterReserveDTO";
 import { Reserve } from "../models/Reserve";
 
 interface IReserveRepository {
@@ -12,5 +13,7 @@ interface IReserveRepository {
     clientId: number,
     propertyId: number
   ): Promise<Reserve | null>;
+
+  findReserves(filter: IFilterReserveDTO): Promise<Reserve[] | null>;
 }
 export { IReserveRepository };

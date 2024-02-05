@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateReserveUseCase } from "./CreateReserverUseCase";
+import { CreateReserveUseCase } from "./CreateReserveUseCase";
 import { container } from "tsyringe";
 
 class CreateReserveController {

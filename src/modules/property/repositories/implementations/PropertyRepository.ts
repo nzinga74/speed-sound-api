@@ -2,8 +2,33 @@ import { ICreatePropertyDTO } from "@modules/property/dtos/ICreatePropertyDTO";
 import { Property } from "@modules/property/models/Property";
 import { IPropertyRepository } from "../IPropertyRepository";
 import { prismaClient } from "database";
+import { IFilterPropertyDTO } from "@modules/property/dtos/IFilterPropertyDTO";
 
 class PropertyRepository implements IPropertyRepository {
+  findById(id: number): Promise<Property | null> {
+    return prismaClient.property.findUnique({
+      where: { id },
+    });
+  }
+  findByUserId(userId: number): Promise<Property[] | null> {
+    return prismaClient.property.findMany({
+      where: { userId },
+    });
+  }
+  findActivates(filter: IFilterPropertyDTO): Promise<Property[] | null> {
+    const currentDate = Date.now();
+    let sql = `select  * from properties p right join  property_images pm ON pm.propertyId = p.id where p.isActived = true and p.id not in (select propertyId from maintenances m where m.propertyId = p.id and m.closingDate > ${currentDate})`;
+    if (filter.userId) {
+      sql += ` and userId=${filter.userId}`;
+    }
+    if (filter.propertyTypeId) {
+      sql += ` and propertyTypeId=${filter.propertyTypeId}`;
+    }
+    if (filter.maxPrice && filter.minPrice) {
+      sql += ` and price >= ${filter.minPrice} and price <= ${filter.maxPrice} `;
+    }
+    return prismaClient.$queryRaw`${sql}`;
+  }
   async create({
     county,
     description,
@@ -19,7 +44,6 @@ class PropertyRepository implements IPropertyRepository {
     images,
     userId,
   }: ICreatePropertyDTO): Promise<Property> {
-    console.log("Here!!!", province);
     const address = await prismaClient.propertyAddress.create({
       data: {
         province,
@@ -47,7 +71,7 @@ class PropertyRepository implements IPropertyRepository {
         },
       },
     });
-    console.log("aajdsdjsd!!!", property);
+
     return property;
   }
 }

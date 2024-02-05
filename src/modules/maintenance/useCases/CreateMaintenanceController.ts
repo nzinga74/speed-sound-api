@@ -15,7 +15,7 @@ class CreateMaintenanceController {
       const createMaintenanceUseCase = container.resolve(
         CreateMaintenanceUseCase
       );
-      const maintenance = createMaintenanceUseCase.execute({
+      const maintenance = await createMaintenanceUseCase.execute({
         description,
         openingDate,
         closingDate,
