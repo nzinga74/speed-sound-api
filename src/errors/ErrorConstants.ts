@@ -25,5 +25,7 @@ class ErrorConstants {
   public static readonly LIST_CONTRACT_ERROR: string =
     "Erro ao listar contrato";
   public static readonly LIST_RESERVE_ERROR: string = "Erro ao listar reservas";
+  public static readonly LIST_PROPERTY_ERROR: string =
+    "Erro ao listar propriedade";
 }
 export { ErrorConstants };

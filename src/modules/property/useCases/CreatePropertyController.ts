@@ -22,6 +22,7 @@ class CreatePropertyController {
         residenceNumber,
       } = request.body;
       let images: PropertyImages[] = [];
+      console.log("<|>", request.files);
       if (request.files) {
         const files = request.files as Express.Multer.File[];
         images = files.map((f) => {
@@ -30,7 +31,7 @@ class CreatePropertyController {
           return propertyImage;
         });
       }
-  
+
       const createPropertyUseCase = container.resolve(CreatePropertyUseCase);
       const property = await createPropertyUseCase.execute({
         county,
@@ -47,13 +48,11 @@ class CreatePropertyController {
         street,
         images,
       });
-      
-  
+
       return response.status(200).json({ data: property });
-    }
-    catch(error) {
+    } catch (error) {
       //@ts-ignore
-      return response.status(400).json({message: error.message})
+      return response.status(400).json({ message: error.message });
     }
   }
 }
