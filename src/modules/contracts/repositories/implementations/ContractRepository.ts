@@ -8,14 +8,6 @@ class ContractRepository implements IContractRepository {
   findContracts(filter: IFilterContract): Promise<Contract[] | null> {
     return prismaClient.contract.findMany({
       where: { ...filter },
-    });
-  }
-  async findContractSameClientProperty(
-    clientId: number,
-    propertyId: number
-  ): Promise<Contract | null> {
-    return await prismaClient.contract.findFirst({
-      where: { clientId, propertyId },
       include: {
         client: {
           include: {
@@ -33,6 +25,14 @@ class ContractRepository implements IContractRepository {
           },
         },
       },
+    });
+  }
+  async findContractSameClientProperty(
+    clientId: number,
+    propertyId: number
+  ): Promise<Contract | null> {
+    return await prismaClient.contract.findFirst({
+      where: { clientId, propertyId },
     });
   }
   create({

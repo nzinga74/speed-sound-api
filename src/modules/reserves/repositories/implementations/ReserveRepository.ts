@@ -8,6 +8,13 @@ class ReserveRepository implements IReserveRepository {
   async findReserves(filter: IFilterReserveDTO): Promise<Reserve[] | null> {
     return await prismaClient.reserve.findMany({
       where: { ...filter },
+      include: {
+        property: {
+          include: {
+            PropertyImages: true,
+          },
+        },
+      },
     });
   }
   async findReserveWithClientAndProperty(
