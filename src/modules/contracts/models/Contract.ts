@@ -6,11 +6,11 @@ class Contract {
   id?: number;
   description: string;
   propertyId: number;
-  property?: Property[];
+  property?: Property;
   userId: number;
-  user?: User[];
+  user?: User;
   clientId: number;
-  client?: Client[];
+  client?: Client;
   transactionDate: Date;
   transaction_price: number;
   created_at?: Date;

@@ -9,6 +9,12 @@ class PropertyRepository implements IPropertyRepository {
   findById(id: number): Promise<Property | null> {
     return prismaClient.property.findUnique({
       where: { id },
+      include: {
+        address: true,
+        PropertyImages: true,
+        user: true,
+        propertyType: true,
+      },
     });
   }
   findByUserId(userId: number): Promise<Property[] | null> {

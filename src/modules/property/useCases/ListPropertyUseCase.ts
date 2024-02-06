@@ -19,6 +19,14 @@ class ListPropertyUseCase {
       throw new Error(ErrorConstants.LIST_PROPERTY_ERROR);
     }
   }
+  async findProperty(propertyId: number) {
+    try {
+      const properties = this.propertyRepository.findById(propertyId);
+      return properties;
+    } catch {
+      throw new Error(ErrorConstants.LIST_PROPERTY_ERROR);
+    }
+  }
 }
 
 export { ListPropertyUseCase };

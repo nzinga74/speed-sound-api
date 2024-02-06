@@ -16,6 +16,23 @@ class ContractRepository implements IContractRepository {
   ): Promise<Contract | null> {
     return await prismaClient.contract.findFirst({
       where: { clientId, propertyId },
+      include: {
+        client: {
+          include: {
+            address: true,
+          },
+        },
+        user: {
+          include: {
+            address: true,
+          },
+        },
+        property: {
+          include: {
+            address: true,
+          },
+        },
+      },
     });
   }
   create({

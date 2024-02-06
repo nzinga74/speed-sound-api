@@ -31,5 +31,16 @@ class ListPropertyController {
       return response.status(400).json({ message: error.message });
     }
   }
+  async handleFindProperty(request: Request, response: Response) {
+    try {
+      const { id } = request.params;
+      const propertyId = parseInt(id);
+      const listPropertyUseCase = container.resolve(ListPropertyUseCase);
+      const properties = await listPropertyUseCase.findProperty(propertyId);
+      return response.status(200).json({ data: properties });
+    } catch (error: any) {
+      return response.status(400).json({ message: error.message });
+    }
+  }
 }
 export { ListPropertyController };

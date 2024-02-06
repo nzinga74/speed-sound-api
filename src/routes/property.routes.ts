@@ -21,4 +21,5 @@ propertyRouter.get(
   "/actives",
   listPropertyController.handleFilterPropertyActived
 );
+propertyRouter.get("/:id", listPropertyController.handleFindProperty);
 export { propertyRouter };
