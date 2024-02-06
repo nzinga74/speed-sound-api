@@ -8,6 +8,6 @@ const createEmployeeController = new CreateEmployeeController();
 const createMaintenanceController = new CreateMaintenanceController();
 const listMaintenanceController = new ListMaintenanceController();
 maintenanceRoute.post("/", createMaintenanceController.handle);
-maintenanceRoute.get("/all", listMaintenanceController.handle);
+maintenanceRoute.get("/", listMaintenanceController.handle);
 maintenanceRoute.post("/employee", createEmployeeController.handle);
 export { maintenanceRoute };

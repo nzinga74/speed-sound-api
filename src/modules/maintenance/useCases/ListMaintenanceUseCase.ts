@@ -14,6 +14,7 @@ class ListMaintenanceUseCase {
       const maintenance = await this.maintenanceRepository.findAll(userId);
       return maintenance;
     } catch (error) {
+      console.log(error);
       throw new Error(ErrorConstants.LIST_MAINTENACE_ERROR);
     }
   }

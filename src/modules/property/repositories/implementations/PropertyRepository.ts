@@ -17,7 +17,7 @@ class PropertyRepository implements IPropertyRepository {
     });
   }
   findActivates(filter: IFilterPropertyDTO): Promise<Property[] | null> {
-    const currentDate = Date.now();
+    const currentDate = new Date();
     //
     let sql = Prisma.sql`select  * from properties p right join  property_images pm ON pm.propertyId = p.id where p.isActived = true and p.id not in (select propertyId from maintenances m where m.propertyId = p.id and m.closingDate > ${currentDate})`;
     if (filter.userId) {
@@ -32,7 +32,7 @@ class PropertyRepository implements IPropertyRepository {
       //sql += ` and price >= ${filter.minPrice} and price <= ${filter.maxPrice} `;
       sql = Prisma.sql`${sql} and price >= ${filter.minPrice} and price <= ${filter.maxPrice} `;
     }
-    console.log(sql);
+
     return prismaClient.$queryRaw`${sql}`;
   }
   async create({
