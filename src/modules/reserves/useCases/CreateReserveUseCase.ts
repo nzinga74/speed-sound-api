@@ -17,17 +17,15 @@ class CreateReserveUseCase {
     propertyId,
     userId,
   }: ICreateReserveDTO) {
+    const clientReserveSameProperty =
+      await this.reserveRepository.findReserveWithClientAndProperty(
+        clientId,
+        propertyId
+      );
+    if (clientReserveSameProperty != null) {
+      throw new Error(ErrorConstants.CREATE_RESERVE_WITH_SAME_CLIENT_PROPERTY);
+    }
     try {
-      const clientReserveSameProperty =
-        await this.reserveRepository.findReserveWithClientAndProperty(
-          clientId,
-          propertyId
-        );
-      if (clientReserveSameProperty != null) {
-        throw new Error(
-          ErrorConstants.CREATE_RESERVE_WITH_SAME_CLIENT_PROPERTY
-        );
-      }
       const reserve = await this.reserveRepository.create({
         clientId,
         estimatedDate,

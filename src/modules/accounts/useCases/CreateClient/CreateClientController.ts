@@ -34,7 +34,7 @@ class CreateClientController {
       return response.json({ data: client });
     } catch (error) {
       //@ts-ignore
-      return response.json({ message: error.message });
+      return response.status(400).json({ message: error.message });
     }
   }
 }
