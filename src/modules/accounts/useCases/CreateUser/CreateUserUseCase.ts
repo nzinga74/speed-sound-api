@@ -21,11 +21,7 @@ class CreateUserUseCase {
     lastname,
     name,
     password,
-    county,
-    district,
-    province,
-    residenceNumber,
-    street,
+    sex,
   }: ICreateUserDto): Promise<User> {
     const userAlreadyExists = await this.userRepository.findByEmail(email);
     if (userAlreadyExists) {
@@ -38,15 +34,12 @@ class CreateUserUseCase {
         lastname,
         password: passwordHash,
         name,
-        county,
-        district,
-        province,
-        residenceNumber,
-        street,
+        sex,
       });
 
       return user;
     } catch (error) {
+      console.log(error);
       throw new Error(ErrorConstants.CREATE_USER_ERROR);
     }
   }

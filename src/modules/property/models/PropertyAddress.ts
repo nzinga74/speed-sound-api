@@ -1,2 +1,0 @@
-class PropertyAddress {}
-export { PropertyAddress };

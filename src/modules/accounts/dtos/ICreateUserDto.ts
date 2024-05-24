@@ -3,11 +3,7 @@ interface ICreateUserDto {
   password: string;
   name: string;
   lastname: string;
-  province: string;
-  county: string;
-  street: string;
-  district: string;
-  residenceNumber: number;
+  sex: string;
 }
 
 export { ICreateUserDto };

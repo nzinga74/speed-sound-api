@@ -10,11 +10,7 @@ class UserRepository implements IUserRepository {
     lastname,
     name,
     password,
-    county,
-    district,
-    province,
-    residenceNumber,
-    street,
+    sex,
   }: ICreateUserDto): Promise<User> {
     const user = await prismaClient.user.create({
       data: {
@@ -22,15 +18,7 @@ class UserRepository implements IUserRepository {
         lastname,
         name,
         password,
-        address: {
-          create: {
-            province,
-            county,
-            district,
-            residenceNumber,
-            street,
-          },
-        },
+        sex,
       },
     });
     return user;
