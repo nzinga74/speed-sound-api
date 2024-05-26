@@ -11,7 +11,7 @@ datasource db {
 }
 
 model User {
-  id         Int       @id @default(autoincrement())
+  id         String    @id @default(uuid())
   name       String
   lastname   String
   email      String    @unique
@@ -26,11 +26,11 @@ model User {
 }
 
 model Profile {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
   image       String
   description String
   user        User     @relation(fields: [userId], references: [id])
-  userId      Int
+  userId      String
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
@@ -38,7 +38,7 @@ model Profile {
 }
 
 model Category {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid())
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -48,14 +48,14 @@ model Category {
 }
 
 model Album {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(uuid())
   cover       String
   title       String
   description String
   user        User     @relation(fields: [userId], references: [id])
-  userId      Int
+  userId      String
   category    Category @relation(fields: [categoryId], references: [id])
-  categoryId  Int
+  categoryId  String
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
   Music       Music[]
@@ -64,13 +64,36 @@ model Album {
 }
 
 model Music {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid())
   title      String
   duration   String
+  audio      String
   album      Album    @relation(fields: [albumId], references: [id])
-  albumId    Int
+  albumId    String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
   @@map("music")
+}
+
+model VideoCategory {
+  id         String   @id @default(uuid())
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Video      Video[]
+
+  @@map("video_category")
+}
+
+model Video {
+  id          String        @id @default(uuid())
+  title       String
+  description String
+  video       String
+  cover       String
+  category    VideoCategory @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
 }

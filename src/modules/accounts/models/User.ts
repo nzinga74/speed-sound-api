@@ -1,5 +1,5 @@
 class User {
-  id: number;
+  id: string;
   name: string;
   lastname: string;
   state?: number;

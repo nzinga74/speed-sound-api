@@ -27,5 +27,10 @@ class ErrorConstants {
   public static readonly LIST_RESERVE_ERROR: string = "Erro ao listar reservas";
   public static readonly LIST_PROPERTY_ERROR: string =
     "Erro ao listar propriedade";
+  public static readonly CREATE_ALBUM_ERROR: string = "Erro ao cadastrar album";
+  public static readonly CREATE_MUSIC_ERROR: string =
+    "Erro ao cadastrar música";
+  public static readonly FILE_UPLOAD_ERROR: string =
+    "Erro ao fazer upload do arquivo";
 }
 export { ErrorConstants };

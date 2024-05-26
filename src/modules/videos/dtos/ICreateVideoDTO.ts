@@ -1,0 +1,2 @@
+interface ICreateVideoDTO {}
+export { ICreateVideoDTO };

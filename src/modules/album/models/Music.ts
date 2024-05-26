@@ -1,11 +1,13 @@
 import { Album } from "@prisma/client";
 
 class Music {
-  id: number;
+  id: String;
   title: string;
   duration: string;
-  albumId: string;
+  albumId: String;
   album?: Album;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export { Music };
