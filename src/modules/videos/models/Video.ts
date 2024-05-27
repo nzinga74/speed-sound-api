@@ -1,9 +1,11 @@
-interface ICreateVideoDTO {
+class Video {
+  id?: string;
   title: string;
   description: string;
   video: string;
   cover: string;
-  userId: string;
   categoryId: string;
+  created_at?: Date;
+  updated_at?: Date;
 }
-export { ICreateVideoDTO };
+export { Video };

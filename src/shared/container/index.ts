@@ -12,10 +12,22 @@ import { container } from "tsyringe";
 import { IAlbumCategoryRepository } from "@modules/album/repositories/IAlbumCategoryRepository";
 import { AlbumCategory } from "@modules/album/models/AlbumCategory";
 import { AlbumCategoryRepository } from "@modules/album/repositories/implementations/AlbumCategoryRepository";
+import { IVideoRepository } from "@modules/videos/repositories/IVideoRepository";
+import { VideoRepository } from "@modules/videos/repositories/Implementations/VideoRepository";
+import { IVideoCategoryRepository } from "@modules/videos/repositories/IVideoCategoryRepository";
+import { VideoCategoryRepository } from "@modules/videos/repositories/Implementations/VideoCategoryRepository";
 
 container.registerSingleton<IMusicRepository>(
   "MusicRepository",
   MusicRepository
+);
+container.registerSingleton<IVideoCategoryRepository>(
+  "VideoCategoryRepository",
+  VideoCategoryRepository
+);
+container.registerSingleton<IVideoRepository>(
+  "VideoRepository",
+  VideoRepository
 );
 container.registerSingleton<IAlbumRepository>(
   "AlbumRepository",
