@@ -5,12 +5,14 @@ import multer from "multer";
 import { CreateMusicContoller } from "@modules/album/useCases/CreateMusicUseCase/CreateMusicController";
 import { CreateAlbumCategoryController } from "@modules/album/useCases/CreateCategoryUseCase/CreateAlbumCategoryController";
 import { ListMusicController } from "@modules/album/useCases/ListMusicUseCase/ListMusicController";
+import { CreateAlbumViewsController } from "@modules/album/useCases/CreateAlbumViewsUseCase/CreateAlbumViewsController";
 const albumRoutes = Router();
 const upload = uploadConfig.upload("tmp/album/cover");
 const createAlbumController = new CreateAlbumController();
 const createMusicUseController = new CreateMusicContoller();
 const createAlbumCategoryController = new CreateAlbumCategoryController();
 const listMusicController = new ListMusicController();
+const createAlbumViewsController = new CreateAlbumViewsController();
 albumRoutes.post(
   "/",
   multer(upload).single("cover"),
@@ -23,4 +25,5 @@ albumRoutes.post(
 );
 albumRoutes.get("/music/:albumId", listMusicController.handle);
 albumRoutes.post("/category", createAlbumCategoryController.handle);
+albumRoutes.post("/albumViews", createAlbumViewsController.handle);
 export { albumRoutes };

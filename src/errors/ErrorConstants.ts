@@ -32,5 +32,7 @@ class ErrorConstants {
     "Erro ao cadastrar música";
   public static readonly FILE_UPLOAD_ERROR: string =
     "Erro ao fazer upload do arquivo";
+  public static readonly ALBUM_VIEW_ALREADEY_EXISTS: string =
+    "Já existe uma visualização por parte desse usuário";
 }
 export { ErrorConstants };

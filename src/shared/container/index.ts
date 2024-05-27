@@ -16,10 +16,16 @@ import { IVideoRepository } from "@modules/videos/repositories/IVideoRepository"
 import { VideoRepository } from "@modules/videos/repositories/Implementations/VideoRepository";
 import { IVideoCategoryRepository } from "@modules/videos/repositories/IVideoCategoryRepository";
 import { VideoCategoryRepository } from "@modules/videos/repositories/Implementations/VideoCategoryRepository";
+import { IAlbumViewsRepository } from "@modules/album/repositories/IAlbumViewsRepository";
+import { AlbumViewsRepository } from "@modules/album/repositories/implementations/AlbumViewsRepository";
 
 container.registerSingleton<IMusicRepository>(
   "MusicRepository",
   MusicRepository
+);
+container.registerSingleton<IAlbumViewsRepository>(
+  "AlbumViewsRepository",
+  AlbumViewsRepository
 );
 container.registerSingleton<IVideoCategoryRepository>(
   "VideoCategoryRepository",
