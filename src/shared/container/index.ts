@@ -18,7 +18,19 @@ import { IVideoCategoryRepository } from "@modules/videos/repositories/IVideoCat
 import { VideoCategoryRepository } from "@modules/videos/repositories/Implementations/VideoCategoryRepository";
 import { IAlbumViewsRepository } from "@modules/album/repositories/IAlbumViewsRepository";
 import { AlbumViewsRepository } from "@modules/album/repositories/implementations/AlbumViewsRepository";
+import { IFollowerRepository } from "@modules/users/repositories/IFollowerRepository";
+import { FollowerRepository } from "@modules/users/repositories/Implementations/FollowerRepository";
+import { IVideoViewsRepository } from "@modules/videos/repositories/IVideoViewsRepository";
+import { VideoViewsRepository } from "@modules/videos/repositories/Implementations/VideoViewsRepository";
 
+container.registerSingleton<IFollowerRepository>(
+  "FollowerRepository",
+  FollowerRepository
+);
+container.registerSingleton<IVideoViewsRepository>(
+  "VideoViewsRepository",
+  VideoViewsRepository
+);
 container.registerSingleton<IMusicRepository>(
   "MusicRepository",
   MusicRepository

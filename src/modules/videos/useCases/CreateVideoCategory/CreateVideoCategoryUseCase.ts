@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
-import { IVideoCategoryRepository } from "../repositories/IVideoCategoryRepository";
-import { ICreateVideoCategoryDTO } from "../dtos/ICreateVideoCategory";
+import { IVideoCategoryRepository } from "../../repositories/IVideoCategoryRepository";
+import { ICreateVideoCategoryDTO } from "../../dtos/ICreateVideoCategory";
 
 @injectable()
 class CreateVideoCategoryUseCase {

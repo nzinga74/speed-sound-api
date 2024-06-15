@@ -1,6 +1,6 @@
-import { ICreateVideoDTO } from "../dtos/ICreateVideoDTO";
+import { ICreateVideoDTO } from "../../dtos/ICreateVideoDTO";
 import { inject, injectable } from "tsyringe";
-import { IVideoRepository } from "../repositories/IVideoRepository";
+import { IVideoRepository } from "../../repositories/IVideoRepository";
 @injectable()
 class CreateVideoUseCase {
   constructor(

@@ -34,5 +34,9 @@ class ErrorConstants {
     "Erro ao fazer upload do arquivo";
   public static readonly ALBUM_VIEW_ALREADEY_EXISTS: string =
     "Já existe uma visualização por parte desse usuário";
+  public static readonly FOLLOWER_ALREADY_EXISTS: string =
+    "O usuário já segui esse cantor";
+  public static readonly VIDEO_VIEW_ALREADY_EXISTS: string =
+    "Já existe uma visualização por parte desse usuário";
 }
 export { ErrorConstants };
