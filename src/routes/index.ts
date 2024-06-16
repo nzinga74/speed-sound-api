@@ -4,6 +4,7 @@ import { albumRoutes } from "./album.routes";
 import { Router } from "express";
 import { videoRoutes } from "./video.routes";
 import { followerRoutes } from "./follower.routes";
+import { playlistRoutes } from "./playlist.routes";
 
 const routes = Router();
 routes.use("/users", userRoutes);
@@ -11,5 +12,6 @@ routes.use("/session", authenticateRoutes);
 routes.use("/album", albumRoutes);
 routes.use("/video", videoRoutes);
 routes.use("/follower", followerRoutes);
+routes.use("/playlist", playlistRoutes);
 
 export { routes };

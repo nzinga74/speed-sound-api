@@ -22,7 +22,19 @@ import { IFollowerRepository } from "@modules/users/repositories/IFollowerReposi
 import { FollowerRepository } from "@modules/users/repositories/Implementations/FollowerRepository";
 import { IVideoViewsRepository } from "@modules/videos/repositories/IVideoViewsRepository";
 import { VideoViewsRepository } from "@modules/videos/repositories/Implementations/VideoViewsRepository";
+import { PlaylistRepository } from "@modules/playlist/repositories/implementation/PlaylistRepository";
+import { IPlaylistRepository } from "@modules/playlist/repositories/IPlaylistRepository";
+import { PlaylistMusicRepository } from "@modules/playlist/repositories/implementation/PlaylistMusicRepository";
+import { IPlaylistMusicRepository } from "@modules/playlist/repositories/IPlaylistMusicRepository";
 
+container.registerSingleton<IPlaylistRepository>(
+  "PlaylistRepository",
+  PlaylistRepository
+);
+container.registerSingleton<IPlaylistMusicRepository>(
+  "PlaylistMusicRepository",
+  PlaylistMusicRepository
+);
 container.registerSingleton<IFollowerRepository>(
   "FollowerRepository",
   FollowerRepository

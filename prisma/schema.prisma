@@ -26,6 +26,7 @@ model User {
   AlbumViews AlbumViews[]
   user       followers[]  @relation("user")
   followers  followers[]  @relation("follower")
+  Playlist   Playlist[]
 
   @@map("users")
 }
@@ -70,14 +71,15 @@ model Album {
 }
 
 model Music {
-  id         String   @id @default(uuid())
-  title      String
-  duration   String
-  audio      String
-  album      Album    @relation(fields: [albumId], references: [id])
-  albumId    String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  id            String          @id @default(uuid())
+  title         String
+  duration      String
+  audio         String
+  album         Album           @relation(fields: [albumId], references: [id])
+  albumId       String
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  PlaylistMusic PlaylistMusic[]
 
   @@map("music")
 }
@@ -131,6 +133,30 @@ model followers {
   updated_at DateTime @updatedAt
 
   @@map("followers")
+}
+
+model Playlist {
+  id            String          @id @default(uuid())
+  name          String
+  userId        String
+  User          User            @relation(fields: [userId], references: [id])
+  created_at    DateTime        @default(now())
+  updated_at    DateTime        @updatedAt
+  PlaylistMusic PlaylistMusic[]
+
+  @@map("playlists")
+}
+
+model PlaylistMusic {
+  id         String   @id @default(uuid())
+  playlist   Playlist @relation(fields: [playlistId], references: [id])
+  playlistId String
+  musicId    String
+  Music      Music    @relation(fields: [musicId], references: [id])
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("playlist_music")
 }
 
 model videoViews {
