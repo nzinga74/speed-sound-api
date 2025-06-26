@@ -3,8 +3,9 @@ import { User } from "../models/User";
 
 interface IUserRepository {
   create(userData: ICreateUserDto): Promise<User>;
-  findById(id: number): Promise<User | null>;
+  findById(id: string): Promise<User | null>;
   findByEmail(email: string): Promise<User | null>;
+  searchName(name: string): Promise<User[]>;
   save(user: User): Promise<User>;
 }
 

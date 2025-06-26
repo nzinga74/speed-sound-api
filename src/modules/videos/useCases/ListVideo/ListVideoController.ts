@@ -4,9 +4,13 @@ import { ListVideoUseCase } from "./ListVideoUseCase";
 class ListVideoController {
   async handle(request: Request, response: Response) {
     try {
-      const { videoId } = request.params;
+      const { videoId, categoryId, userId } = request.body;
       const listVideoUseCase = container.resolve(ListVideoUseCase);
-      const video = await listVideoUseCase.execute(videoId);
+      const video = await listVideoUseCase.execute({
+        videoId,
+        categoryId,
+        userId,
+      });
       return response.status(200).json({
         data: video,
       });

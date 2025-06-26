@@ -26,11 +26,18 @@ import { PlaylistRepository } from "@modules/playlist/repositories/implementatio
 import { IPlaylistRepository } from "@modules/playlist/repositories/IPlaylistRepository";
 import { PlaylistMusicRepository } from "@modules/playlist/repositories/implementation/PlaylistMusicRepository";
 import { IPlaylistMusicRepository } from "@modules/playlist/repositories/IPlaylistMusicRepository";
+import { IProfileRepository } from "@modules/users/repositories/IProfileRepository";
+import { ProfileRepository } from "@modules/users/repositories/Implementations/ProfileRepository";
+import { IRadioRepository } from "@modules/radios/repositories/IRadioRepository";
+import { RadioRepository } from "@modules/radios/repositories/implementations/RadioRepository";
+import { IArtistRepository } from "@modules/artists/repositories/IArtistRepository";
+import { ArtistRepository } from "@modules/artists/repositories/ArtistRepository/ArtistRepository";
 
 container.registerSingleton<IPlaylistRepository>(
   "PlaylistRepository",
   PlaylistRepository
 );
+
 container.registerSingleton<IPlaylistMusicRepository>(
   "PlaylistMusicRepository",
   PlaylistMusicRepository
@@ -67,6 +74,19 @@ container.registerSingleton<IAlbumCategoryRepository>(
   "AlbumCategoryRepository",
   AlbumCategoryRepository
 );
+container.registerSingleton<IRadioRepository>(
+  "RadioRepository",
+  RadioRepository
+);
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
 container.registerSingleton<IHashProvider>("HashProvider", BcryptHash);
 container.registerSingleton<ITokenProvider>("TokenProvider", JsonWebToken);
+container.registerSingleton<IProfileRepository>(
+  "ProfileRepository",
+  ProfileRepository
+);
+
+container.registerSingleton<IArtistRepository>(
+  "ArtistRepository",
+  ArtistRepository
+);

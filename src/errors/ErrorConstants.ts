@@ -38,5 +38,11 @@ class ErrorConstants {
     "O usuário já segui esse cantor";
   public static readonly VIDEO_VIEW_ALREADY_EXISTS: string =
     "Já existe uma visualização por parte desse usuário";
+  public static readonly ALBUM_LIST_ERROR: string =
+    "Ocorreu algum erro ao listar os albums";
+  public static readonly RADIO_COUNTRY_LIST_ERROR: string =
+    "Ocorreu ao listar  de  país";
+  public static readonly RADIO_STATION_COUNTRY_LIST_ERROR: string =
+    "Ocorreu ao listar os Estações por país";
 }
 export { ErrorConstants };

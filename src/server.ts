@@ -12,6 +12,6 @@ app.use("/static", express.static(__dirname + "/tmp"));
 app.use(cors());
 app.use("/api-docs", SwaggerUi.serve, SwaggerUi.setup(swaggerFile));
 app.use(routes);
-app.listen(3333, () => {
+app.listen(3333, "0.0.0.0", () => {
   console.log("Server started");
 });

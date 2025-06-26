@@ -5,5 +5,6 @@ interface ICreateVideoDTO {
   cover: string;
   userId: string;
   categoryId: string;
+  hls?: string;
 }
 export { ICreateVideoDTO };

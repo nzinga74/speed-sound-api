@@ -14,6 +14,7 @@ interface IRequest {
 }
 interface IResponse {
   user: {
+    id: string;
     email: string;
     name: string;
   };
@@ -50,6 +51,7 @@ class AuthenticateUseCase {
     const token = this.tokenProvider.sign(user.id);
     const response = {
       user: {
+        id: user.id,
         email: user.email,
         name: user.name,
       },

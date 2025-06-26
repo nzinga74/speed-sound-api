@@ -5,6 +5,14 @@ import { prismaClient } from "database";
 
 class UserRepository implements IUserRepository {
   constructor() {}
+  async searchName(name: string): Promise<User[]> {
+    return await prismaClient.user.findMany({
+      where: {
+        name: { search: "*" + name + "*" },
+      },
+      include: { Profile: true },
+    });
+  }
   async create({
     email,
     lastname,
@@ -23,9 +31,13 @@ class UserRepository implements IUserRepository {
     });
     return user;
   }
-  async findById(id: number): Promise<User | null> {
+  async findById(id: string): Promise<User | null> {
     return await prismaClient.user.findUnique({
       where: { id },
+      include: {
+        Profile: true,
+        followers: true,
+      },
     });
   }
   async findByEmail(email: string): Promise<User | null> {

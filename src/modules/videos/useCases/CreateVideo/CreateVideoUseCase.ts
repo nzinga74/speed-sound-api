@@ -15,6 +15,7 @@ class CreateVideoUseCase {
     title,
     video,
     userId,
+    hls,
   }: ICreateVideoDTO) {
     try {
       return await this.videoRepository.create({
@@ -24,6 +25,7 @@ class CreateVideoUseCase {
         title,
         video,
         userId,
+        hls,
       });
     } catch (error: any) {
       throw new Error(error.message);

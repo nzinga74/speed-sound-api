@@ -8,8 +8,9 @@ import { ListMusicController } from "@modules/album/useCases/ListMusicUseCase/Li
 import { CreateAlbumViewsController } from "@modules/album/useCases/CreateAlbumViewsUseCase/CreateAlbumViewsController";
 import { ListMostViewedAlbumController } from "@modules/album/useCases/ListMostViewedAlbum/ListMostViewedAlbumController";
 import { ListFolowedAlbumController } from "@modules/album/useCases/ListFollowedAlbum/ListFollowedAlbumController";
+import { ListAlbumController } from "@modules/album/useCases/ListAlbum/ListAlbumController";
 const albumRoutes = Router();
-const upload = uploadConfig.upload("tmp/album/cover");
+const upload = uploadConfig.upload("tmp");
 const createAlbumController = new CreateAlbumController();
 const createMusicUseController = new CreateMusicContoller();
 const createAlbumCategoryController = new CreateAlbumCategoryController();
@@ -17,6 +18,7 @@ const listMusicController = new ListMusicController();
 const createAlbumViewsController = new CreateAlbumViewsController();
 const listMostViewedAlbumController = new ListMostViewedAlbumController();
 const listFolowedAlbumController = new ListFolowedAlbumController();
+const listAlbumController = new ListAlbumController();
 albumRoutes.post(
   "/",
   multer(upload).single("cover"),
@@ -35,4 +37,5 @@ albumRoutes.get(
   "/albumViews/most-viewed",
   listMostViewedAlbumController.handle
 );
+albumRoutes.post("/list", listAlbumController.handle);
 export { albumRoutes };

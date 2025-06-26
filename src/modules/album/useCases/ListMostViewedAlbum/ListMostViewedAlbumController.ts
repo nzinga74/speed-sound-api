@@ -5,12 +5,17 @@ class ListMostViewedAlbumController {
   async handle(request: Request, response: Response) {
     try {
       const { limit } = request.query;
-      const limitUser = parseInt(limit as string);
+      let limitAlbum = 10;
+      if (limit != undefined) {
+        limitAlbum = parseInt(limit as string);
+      }
 
       const listMostViewedAlbumUseCase = container.resolve(
         ListMostViewedAlbumUseCase
       );
-      const mostViewedAlbuns = await listMostViewedAlbumUseCase.execute(10);
+      const mostViewedAlbuns = await listMostViewedAlbumUseCase.execute(
+        limitAlbum
+      );
       return response.status(200).json({
         data: mostViewedAlbuns,
       });

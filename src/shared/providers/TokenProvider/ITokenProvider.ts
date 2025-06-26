@@ -1,4 +1,4 @@
 interface ITokenProvider {
-  sign(subject: number): string;
+  sign(subject: string): string;
 }
 export { ITokenProvider };

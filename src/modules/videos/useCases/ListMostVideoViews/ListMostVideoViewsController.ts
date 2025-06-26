@@ -5,10 +5,13 @@ class ListMostVideoViewsController {
   async handle(request: Request, response: Response) {
     try {
       const { limit } = request.query;
-      const limitUser = parseInt(limit as string);
+      let limitVideo = 10;
+      if (limit != undefined) {
+        limitVideo = parseInt(limit as string);
+      }
 
       const listMostvideoView = container.resolve(ListMostVideoViewsUseCase);
-      const mostVideoView = await listMostvideoView.execute(10);
+      const mostVideoView = await listMostvideoView.execute(limitVideo);
       return response.status(200).json({
         data: mostVideoView,
       });

@@ -9,7 +9,7 @@ import { ListFolowedVideoController } from "@modules/videos/useCases/ListFollowe
 import { ListVideoController } from "@modules/videos/useCases/ListVideo/ListVideoController";
 
 const videoRoutes = Router();
-const upload = uploadConfig.upload("tmp/album/cover");
+const upload = uploadConfig.upload("tmp");
 const uploadMulterMiddleware = multer(upload).fields([
   { name: "cover", maxCount: 1 },
   { name: "video", maxCount: 1 },
@@ -23,7 +23,7 @@ const listVideoController = new ListVideoController();
 videoRoutes.post("/", uploadMulterMiddleware, createVideoController.handle);
 videoRoutes.post("/category", createVideoCategoryController.handle);
 videoRoutes.post("/video-views", createVideoViewsController.handle);
-videoRoutes.get("/:videoId", listVideoController.handle);
+videoRoutes.post("/list", listVideoController.handle);
 videoRoutes.get("/followed-video", listFolowedVideoController.handle);
 videoRoutes.get(
   "/video-views/most-viewed",

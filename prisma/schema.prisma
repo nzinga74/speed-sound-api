@@ -2,12 +2,20 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  EDITOR
+  VIEWER
 }
 
 model User {
@@ -27,8 +35,51 @@ model User {
   user       followers[]  @relation("user")
   followers  followers[]  @relation("follower")
   Playlist   Playlist[]
+  ArtistUser ArtistUser[]
 
+  @@index([id])
+  @@fulltext([name])
+  @@fulltext([name, lastname])
   @@map("users")
+}
+
+model MusicGenre {
+  id          String   @id @default(uuid())
+  description String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  Artist      Artist[]
+
+  @@map("music_genre")
+}
+
+model Artist {
+  id           String       @id @default(uuid())
+  name         String
+  realName     String
+  biography    String?      @db.Text
+  image        String?
+  musicGenre   MusicGenre   @relation(fields: [musicGenreId], references: [id])
+  musicGenreId String
+  created_at   DateTime     @default(now())
+  updated_at   DateTime     @updatedAt
+  ArtistUser   ArtistUser[]
+
+  @@map("artists")
+}
+
+model ArtistUser {
+  id         String   @id @default(uuid())
+  role       Role
+  artist     Artist   @relation(fields: [artistId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  artistId   String
+  userId     String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@unique([artistId, userId]) // ensures uniqueness of the pair
+  @@map("artist_users")
 }
 
 model Profile {
@@ -103,6 +154,7 @@ model Video {
   user        User          @relation(fields: [userId], references: [id])
   userId      String
   category    VideoCategory @relation(fields: [categoryId], references: [id])
+  hls         String?
   categoryId  String
   created_at  DateTime      @default(now())
   updated_at  DateTime      @updatedAt

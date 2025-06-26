@@ -13,6 +13,8 @@ interface IFollowerRepository {
   deleteFollowerByIdAndUserId(data: IDeleteFollowersDTO): Promise<Follower>;
   listFollowerByIdAndUserId(data: IListfollowersDTO): Promise<Follower[]>;
   listMostFollowedUsers(limit: number): Promise<MostFollower[]>;
+  totalFollowers(userId: string): Promise<number>;
+  followersStatistics(userId: string, year: number): Promise<any[]>;
 }
 
 export { IFollowerRepository };

@@ -16,7 +16,7 @@ class CreateUserFollowerController {
         data: follower,
       });
     } catch (error: any) {
-      return response.status(200).json({
+      return response.status(400).json({
         data: error.message,
       });
     }

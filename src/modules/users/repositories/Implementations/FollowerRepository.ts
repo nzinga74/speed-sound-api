@@ -7,6 +7,16 @@ import { IListfollowersDTO } from "@modules/users/dtos/ListfollowersDTO";
 import { MostFollower } from "@modules/users/models/MostFollower";
 
 class FollowerRepository implements IFollowerRepository {
+  async followersStatistics(userId: string, year: number): Promise<any[]> {
+    return await prismaClient.$queryRawUnsafe(`select month(created_at) as month,count(*) as totalFollowers from followers where userId = "${userId}" and year(created_at) = ${year} group by month(created_at)
+`);
+  }
+  async totalFollowers(userId: string): Promise<number> {
+    const countFollowers = (await prismaClient.$queryRawUnsafe(
+      `select count(*) as totalFollowers from followers where userId = "${userId}" `
+    )) as any;
+    return countFollowers[0]["totalFollowers"];
+  }
   async listMostFollowedUsers(limit: number): Promise<MostFollower[]> {
     //@ts-ignore
     BigInt.prototype.toJSON = function () {
@@ -14,7 +24,8 @@ class FollowerRepository implements IFollowerRepository {
       return int ?? this.toString();
     };
     return await prismaClient.$queryRawUnsafe<MostFollower[]>(
-      `select  us.id, us.email,us.name, us.lastname,count(*) as numberOfFollower from followers f inner join users us on f.userId = us.id group by userId order by numberOfFollower desc`
+      "SELECT us.id, us.email,us.name,us.lastname,prof.image,COUNT(*) AS numberOfFollower FROM followers f INNER JOIN users us ON f.userId = us.id LEFT JOIN profile prof ON f.userId = prof.userId GROUP BY f.userId,prof.image order  BY numberOfFollower DESC LIMIT 10"
+      //`select  us.id, us.email,us.name, us.lastname,count(*) as numberOfFollower from followers f inner join users us on f.userId = us.id group by userId order by numberOfFollower desc limit 10`
     );
   }
   async listFollowerByIdAndUserId({
