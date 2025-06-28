@@ -7,8 +7,8 @@ class ErrorConstants {
   public static readonly CREATE_USER_ERROR: string = "Erro ao criar usuário";
   public static readonly CREATE_PROPERTY_TYPER_ERROR: string =
     "Erro ao cadastrar tipo de propriedade";
-  public static readonly CREATE_PROPERTY_ERROR: string =
-    "Erro ao cadastrar  propriedade";
+  public static readonly LIST_ARTIST_MEMBER_ERROR: string =
+    "Erro ao listar  membros";
   public static readonly CREATE_EMPLOYEE_ERROR: string =
     "Erro ao cadastrar funcionário";
   public static readonly CREATE_MAINTENACE_ERROR: string =

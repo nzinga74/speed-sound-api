@@ -4,8 +4,25 @@ import { IArtistRepository } from "../IArtistRepository";
 import { prismaClient } from "database";
 import { Role } from "@prisma/client";
 import { ICreateArtistMember } from "@modules/artists/dtos/ICreateArtistMember";
+import { IListArtistMember } from "@modules/artists/dtos/IListArtistMember";
 
 class ArtistRepository implements IArtistRepository {
+  deleteMember(artistUserId: string): Promise<ArtistUser> {
+    return prismaClient.artistUser.delete({
+      where: { id: artistUserId },
+    });
+  }
+  async listArtists({
+    artistId,
+    memberId,
+  }: IListArtistMember): Promise<ArtistUser[]> {
+    return prismaClient.artistUser.findMany({
+      where: {
+        artistId,
+        userId: memberId,
+      },
+    });
+  }
   async addMember({
     memberId,
     role,

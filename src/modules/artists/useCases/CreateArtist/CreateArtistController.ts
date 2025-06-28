@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { CreateArtistUseCase } from "./CreateUserUseCase";
+import { CreateArtistUseCase } from "./CreateArtistUseCase";
 
 class CreateArtistController {
   async handle(request: Request, response: Response): Promise<Response> {

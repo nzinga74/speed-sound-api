@@ -1,9 +1,4 @@
 import { inject, injectable } from "tsyringe";
-import * as bcrypt from "bcryptjs";
-import { ICreateUserDto } from "@modules/accounts/dtos/ICreateUserDto";
-import { IUserRepository } from "@modules/accounts/repositories/IUserRepository";
-import { User } from "@modules/accounts/models/User";
-import { IHashProvider } from "@shared/providers/HashProvider/IHashProvider";
 import { ErrorConstants } from "@errors/ErrorConstants";
 import { IArtistRepository } from "@modules/artists/repositories/IArtistRepository";
 import { Artist } from "@modules/artists/models/Artist";
